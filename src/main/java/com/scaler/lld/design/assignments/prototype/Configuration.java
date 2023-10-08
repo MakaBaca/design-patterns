@@ -1,6 +1,6 @@
 package com.scaler.lld.design.assignments.prototype;
 
-public class Configuration {
+public class Configuration implements ClonableObject<Configuration>{
     private String themeColor;
     private Boolean autoSave;
     private String language;
@@ -45,5 +45,18 @@ public class Configuration {
 
     public ConfigurationType getType() {
         return type;
+    }
+
+    @Override
+    public Configuration cloneObject() {
+        Configuration config = new Configuration(null, null, null, null, null, null, null);
+        config.type = this.type;
+        config.fontSize = this.fontSize;
+        config.darkMode = this.darkMode;
+        config.language = this.language;
+        config.themeColor = this.themeColor;
+        config.fontFamily = this.fontFamily;
+        config.autoSave = this.getAutoSave();
+        return config;
     }
 }
